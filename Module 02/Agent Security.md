@@ -16,7 +16,7 @@ tail /etc/zabbix/zabbix_agent.psk
 И вот теперь конфигурируем файл с настройками
 
 ```
-nano /etc/zabbix/zabbix_agent.conf
+nano /etc/zabbix/zabbix_agentd.conf
 ```
 
 Меняем следующие значения:\

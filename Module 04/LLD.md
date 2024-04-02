@@ -1,6 +1,6 @@
 Переключаемся на gate
 ```
-# nano /etc/zabbix/zabbix_agentd.conf.d/my.linux.disk.discovery.conf
+# nano /etc/zabbix/zabbix_agentd.d/my.linux.disk.discovery.conf
 ```
 ```
 UserParameter=my.disks.discovery,/bin/lsblk -dJ | /bin/sed -e 's/blockdevices/data/' -e 's/name/{#NAME}/g' -e 's/type/{#TYPE}/g'

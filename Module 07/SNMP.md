@@ -1,6 +1,24 @@
 
 Подключаемся к серверу zabbix
 
+Добавить репозитарий apt
+
+```
+nano /etc/apt/sources.list
+```
+```
+deb http://deb.debian.org/debian/ bullseye main contrib non-free
+deb-src http://deb.debian.org/debian/ bullseye main contrib non-free
+
+deb http://security.debian.org/debian-security bullseye-security main contrib non-free
+deb-src http://security.debian.org/debian-security bullseye-security main contrib non-free
+
+deb http://deb.debian.org/debian/ bullseye-updates main contrib non-free
+deb-src http://deb.debian.org/debian/ bullseye-updates main contrib non-free
+
+```
+
+
 Установка snmp консоли
 ```
 # apt install snmp snmp-mibs-downloader

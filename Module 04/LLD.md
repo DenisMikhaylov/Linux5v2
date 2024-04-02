@@ -137,7 +137,7 @@ chmod +x /etc/zabbix/dhcp-pools-shared-network.sh
 
 Создаем  на Gate новый файл для агента.
 ```
-# nano  /etc/zabbix/zabbix_agentd.conf.d/dhcp_stat.conf
+# nano  /etc/zabbix/zabbix_agentd.d/dhcp_stat.conf
 ```
 ```
 UserParameter=dhcp.pools.discovery,/etc/zabbix/dhcp-pools-discovery.sh

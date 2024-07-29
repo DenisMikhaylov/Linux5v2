@@ -61,7 +61,7 @@ Items
 
 Добавляем строчку
 ```
-UserParameter=listinstalledsoft,ls /usr/share/applications | awk -F '.desktop' ' { print $1}' –
+UserParameter=listinstalledsoft,ls /usr/share/applications | awk -F '.desktop' ' { print $1}'
 ```
 В веб интерфейсе zabbix открывает "Data collection" - 'Host'
 ```

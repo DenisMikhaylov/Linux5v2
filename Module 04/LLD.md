@@ -1,3 +1,6 @@
+Добавтьте host Gate
+
+
 Переключаемся на gate
 ```
 # nano /etc/zabbix/zabbix_agentd.d/my.linux.disk.discovery.conf
@@ -188,11 +191,3 @@ Add
                   last(/Template App DHCP Pools/dhcp.pools.shared-network[{#POOLNAME},used])/last(/Template App DHCP Pools/dhcp.pools.shared-network[{#POOLNAME},defined])*100 > {$DHCP.POOLS.MAX.PERCENT}
       Severity: Warning
 ```
-
-
-По аналогии с DHCP Создайте шаблон для дисков.
-
-Получите счетчики по free,total,used
-
-
-Создайте макрос с процентом свободного места

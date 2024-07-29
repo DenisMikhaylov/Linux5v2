@@ -1,6 +1,10 @@
 Добавтьте host Gate
-
-
+```
+Host name: Gate
+  interface agent: ip gate
+  New group: my host
+  Template: Linux by zabbix agent
+```
 Переключаемся на gate
 ```
 # nano /etc/zabbix/zabbix_agentd.d/my.linux.disk.discovery.conf

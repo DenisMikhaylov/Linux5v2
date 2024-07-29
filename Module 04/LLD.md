@@ -8,7 +8,7 @@ UserParameter=my.disks.discovery,/bin/lsblk -dJ | /bin/sed -e 's/blockdevices/da
 Проверяем раюоту нового параметра , переключаемся на zabbix
 
 ```
-# zabbix_get -s 192.168.10.1 -k my.disks.discovery | jq
+# zabbix_get -s ip gate -k my.disks.discovery | jq
 ```
 Создаем шаблон 
 

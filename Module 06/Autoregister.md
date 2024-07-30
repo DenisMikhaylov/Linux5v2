@@ -20,7 +20,12 @@ Alert - Actions - Auto registration
 ```
 
   Настройка агента на активный режим
-  ```
+  Отредактировать файл
+```
+  C:\Program Files\Zabbix Agent\zabbix_agentd.conf
+```
+```
+
 LogFile=C:\Program Files\Zabbix Agent\zabbix_agentd.log
 ListenIP=0.0.0.0
 StartAgents=0

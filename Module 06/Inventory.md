@@ -56,7 +56,7 @@ Items
 
 Создаем файл
 ```
-#nano /etc/zabbix/zabbix_agentd.conf.d/listinstalledsoft.conf
+#nano /etc/zabbix/zabbix_agentd.d/listinstalledsoft.conf
 ```
 
 Добавляем строчку

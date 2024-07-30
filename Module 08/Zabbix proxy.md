@@ -1,31 +1,26 @@
-# Настройка zabbix proxy LTS
+# Настройка zabbix proxy
 
+Подключаемся к серверу Debian-2
 
-
-Для начала стоить отметить что zabbix-proxy сервер не имеет веб интерфейса, соответственно использует крайне мало системных ресурсов.
-
-
+Установка MySQL для сервера Zabbix
 ```
-sudo su 
 apt update
-apt upgrade
-reboot
-```
-далее нам понадобится текстовый редактор так как в минимальной сборке он не предоставляется ))
-```
-sudo su
-apt install nano
-```
-Далее идем на сайт заббикса и выбираем нужный дистрибутив
-```
-wget https://repo.zabbix.com/zabbix/6.0/ubuntu/pool/main/z/zabbix-release/zabbix-release_6.0-4+ubuntu22.04_all.deb
-dpkg -i zabbix-release_6.0-4+ubuntu22.04_all.deb
-apt update
-apt install zabbix-proxy-sqlite3
 
+apt install default-mysql-server
 ```
 
-Прежде чем менять файл с настройками сгенерируем на своем компе psk фразу командой и записываем ее в файл
+Далее идем на сайт заббикса и выбираем нужный дистрибутив и производим установку. Выюираем дистрибутив с MySQL.
+Пример. Желательно пройти на сайт и там выбираем подходящую последовательность.
+```
+https://www.zabbix.com/ru/download?zabbix=6.4&os_distribution=debian&os_version=12&components=proxy&db=mysql&ws=
+```
+Подключение Proxy Можно произвести с шифрованием или без шифрования.
+
+В нашем примере используем с шифрованием.
+
+Шифрованное подключение
+
+Сгенерируем на сервере psk
 ```
 openssl rand -hex 32 > /etc/zabbix/zabbix_proxy.psk
 ```
@@ -34,24 +29,42 @@ openssl rand -hex 32 > /etc/zabbix/zabbix_proxy.psk
 
 tail /etc/zabbix/zabbix_proxy.psk
 ```
-Сохраняем где нибудь у себя данный ключ он нам пригодиться при настройки серверной части заббикса
-И вот теперь конфигурируем файл с настройками
+Сохраняем где нибудь у себя данный ключ, он нам пригодится при настройки серверной части заббикса.
+Настройка конфигурации.
 
 ```
 nano /etc/zabbix/zabbix_proxy.conf
 ```
 
 Меняем следующие значения:\
+```
 Server=    ваш ip adresss\
 Hostname=  такой же нужно будет прописать на основном сервере\
-DBName= /tmp/zabbix_proxy\
+ProxyMode=1
+DBPassword=password
 TLSAccept=psk
 TLSConnect=psk\
 TLSPSKFile=/etc/zabbix/zabbix_proxy.psk\
 TLSPSKIdentity=test  - тут меняйте значение на свое - такое же должно использоваться на серверной части\
-
+```
+Перезапускаем прокси
 ```
 systemctl restart zabbix-proxy
 systemctl enable zabbix-proxy
 ```
 
+Подключение прокси к заббикс
+
+Открываем  в браузере заббикс.
+
+```
+Administration -> Proxies
+Create proxy
+Proxy name: Имя сервера на который установили прокси
+Proxy mode: Зависит от выбрано режима
+Proxy address: ip debian-2
+Переключаемся на вкладку Encryption
+Connections from proxy: psk
+PSK identity: указываем что и в файле настроек
+PSK: текст из файла PSK
+```
